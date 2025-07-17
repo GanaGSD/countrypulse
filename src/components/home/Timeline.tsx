@@ -2,7 +2,6 @@ import React from "react";
 import { Timeline } from "@/components/ui/timeline1";
 import { homeDestinations1 } from "@/data/homeDestinations";
 import { AnimatedTestimonials } from "../ui/animated-testimonials";
-import { cn } from "@/lib/utils";
 
 export function TimelineDemo() {
   return (
