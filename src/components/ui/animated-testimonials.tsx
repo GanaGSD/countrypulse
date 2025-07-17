@@ -2,8 +2,9 @@
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
+import Image from "next/image"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 type Testimonial = {
   description: string;
@@ -11,6 +12,7 @@ type Testimonial = {
   title: string;
   image: string;
 };
+
 export const AnimatedTestimonials = ({
   destinations,
   autoplay = false,
@@ -20,9 +22,10 @@ export const AnimatedTestimonials = ({
 }) => {
   const [active, setActive] = useState(0);
 
-  const handleNext = () => {
+  // Use useCallback to memoize the function
+  const handleNext = useCallback(() => {
     setActive((prev) => (prev + 1) % destinations.length);
-  };
+  }, [destinations.length]);
 
   const handlePrev = () => {
     setActive((prev) => (prev - 1 + destinations.length) % destinations.length);
@@ -37,11 +40,12 @@ export const AnimatedTestimonials = ({
       const interval = setInterval(handleNext, 5000);
       return () => clearInterval(interval);
     }
-  }, [autoplay]);
+  }, [autoplay, handleNext]); // Now include handleNext in dependencies
 
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
+
   return (
     <div className="mx-auto max-w-sm px-4 py-5 font-sans antialiased md:max-w-4xl md:px-4 lg:px-5">
       <div className="relative grid grid-cols-1 gap-5 md:gap-20 md:grid-cols-2">
@@ -146,13 +150,13 @@ export const AnimatedTestimonials = ({
                   }}
                   className="absolute inset-0 origin-bottom"
                 >
-                  <img
+                  <Image
                     src={destination.image}
                     alt={destination.id}
                     width={500}
                     height={500}
                     draggable={false}
-                    className="h-full w-full rounded-xl object-cover object-center"
+                    className="h-full w-full object-cover object-center"
                   />
                 </motion.div>
               ))}

@@ -5,7 +5,7 @@ import { AnimatedTestimonials } from "../ui/animated-testimonials";
 
 export function TimelineDemo() {
   return (
-    <div className="relative flex w-full items-center justify-center bg-gray-100  pt-5">
+    <div className="relative flex w-full items-center justify-center bg-white pt-5 ">
         {/* <div
             className={cn(
             "absolute inset-0",

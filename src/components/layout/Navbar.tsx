@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import Link from "next/link"
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navigation Bar */}
-      <nav className="fixed md:top-15 left-0 md:right-20 z-40 ">
+      <nav className="fixed md:top-15 left-0 md:right-20 z-50 ">
         <div className="flex justify-end px-4 sm:px-6 py-4">
           
           <button
@@ -39,7 +40,7 @@ export default function Navbar() {
 
       {/* Overlay Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white">
+        <div className="fixed inset-0 z-60 bg-white">
           {/* Close button in top right */}
           <div className="absolute md:top-11 md:right-10">
             <button
@@ -55,41 +56,27 @@ export default function Navbar() {
           {/* Menu Content */}
           <div className="flex flex-col items-center justify-center h-full text-center px-8">
             <nav className="space-y-8">
-              <a 
-                href="#" 
+              <Link 
+                href="/" 
                 className="block text-3xl sm:text-4xl font-bold text-gray-900 hover:text-gray-600 transition-colors"
                 onClick={toggleMenu}
               >
                 Home
-              </a>
-              <a 
+              </Link>
+              <Link
+                href="/destinations" 
+                className="block text-3xl sm:text-4xl font-bold text-gray-900 hover:text-gray-600 transition-colors"
+                onClick={toggleMenu}
+              >
+                Destinations
+              </Link>
+              <Link
                 href="#" 
                 className="block text-3xl sm:text-4xl font-bold text-gray-900 hover:text-gray-600 transition-colors"
                 onClick={toggleMenu}
               >
                 About
-              </a>
-              <a 
-                href="#" 
-                className="block text-3xl sm:text-4xl font-bold text-gray-900 hover:text-gray-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Places
-              </a>
-              <a 
-                href="#" 
-                className="block text-3xl sm:text-4xl font-bold text-gray-900 hover:text-gray-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Culture
-              </a>
-              <a 
-                href="#" 
-                className="block text-3xl sm:text-4xl font-bold text-gray-900 hover:text-gray-600 transition-colors"
-                onClick={toggleMenu}
-              >
-                Contact
-              </a>
+              </Link>
             </nav>
           </div>
         </div>

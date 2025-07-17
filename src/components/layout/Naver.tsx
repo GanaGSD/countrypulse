@@ -1,10 +1,10 @@
 import Image from "next/image"
 
-export default function Footer() {
+export default function Naver() {
   return (
     <footer className="bg-white text-black">
       <div className="flex justify-between py-15 px-20 pr-20">
-          <Image 
+          <Image
             src="/potenslogob.svg" 
             alt="potenslogo" 
             height={150}
@@ -29,7 +29,6 @@ export default function Footer() {
 
           <div className='flex justify-center items-center'>
             <p>
-              &copy; {new Date().getFullYear()} Country Pulse.
             </p>
           </div>
        

@@ -1,14 +1,14 @@
 import { TimelineDemo } from '@/components/home/Timeline';
-import { InfiniteMovingCardsDemo } from '@/components/home/MovingCards';
+import Naver from '@/components/layout/Naver';
+import Footer from '@/components/layout/Footer';
 
 export default function Home() {
   
   return (
     <div>
+      <Naver />
       <TimelineDemo />
-      <InfiniteMovingCardsDemo />
-      {/* <Magazine /> */}
-
+      <Footer />
     </div>
   );
 }

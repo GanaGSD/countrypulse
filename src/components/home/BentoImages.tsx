@@ -5,10 +5,8 @@ import { cn } from "@/lib/utils";
 import { bentoItems } from "@/data/bentoItems";
 
 const BentoGrid = ({
-  className,
-  children,
-}: {
-  className?: string;
+  children
+} : {
   children?: React.ReactNode;
 }) => {
   return (

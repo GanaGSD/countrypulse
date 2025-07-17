@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 export const ImagesSlider = ({
   images,
@@ -11,26 +11,23 @@ export const ImagesSlider = ({
   className,
   autoplay = true,
   direction = "up",
-  text,
-}: {
+} : {
   images: string[];
   children: React.ReactNode;
   overlay?: React.ReactNode;
   overlayClassName?: string;
   className?: string;
   autoplay?: boolean;
-  direction?: "up" | "down";
-  text?: string
+  direction?: "up" | "down"
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setCurrentIndex((prevIndex) =>
       prevIndex + 1 === images.length ? 0 : prevIndex + 1
     );
-  };
+  }, [images.length]);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) =>
@@ -43,7 +40,6 @@ export const ImagesSlider = ({
   }, []);
 
   const loadImages = () => {
-    setLoading(true);
     const loadPromises = images.map((image) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -56,10 +52,10 @@ export const ImagesSlider = ({
     Promise.all(loadPromises)
       .then((loadedImages) => {
         setLoadedImages(loadedImages as string[]);
-        setLoading(false);
       })
       .catch((error) => console.error("Failed to load images", error));
   };
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight") {
@@ -72,7 +68,7 @@ export const ImagesSlider = ({
     window.addEventListener("keydown", handleKeyDown);
 
     // autoplay
-    let interval: any;
+    let interval: NodeJS.Timeout ;
     if (autoplay) {
       interval = setInterval(() => {
         handleNext();
@@ -97,7 +93,7 @@ export const ImagesSlider = ({
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: [0.645, 0.045, 0.355, 1.0],
+        ease: [0.645, 0.045, 0.355, 1.0] as const, // Add 'as const' assertion
       },
     },
     upExit: {
@@ -152,4 +148,4 @@ export const ImagesSlider = ({
     </div>
     
   );
-};
+}; 
