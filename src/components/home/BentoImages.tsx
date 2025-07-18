@@ -42,8 +42,8 @@ export function BentoImages() {
               imageUrl={item.imageUrl}
               childrenClassName={item.className2}
             >
-              <p className="font-bold text-xl">{item.title}</p>
-              <p className="font-normal text-sm">{item.description}</p>
+              {/* <p className="font-bold text-xl">{item.title}</p> */}
+              <p className="font-normal text-2xl">{item.description}</p>
             </DirectionAwareHover>
           </div>
         ))}
